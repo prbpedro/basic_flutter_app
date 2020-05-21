@@ -1,25 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:materialapp/Widgets/Pages/Shared/base_page.dart';
+import 'package:materialapp/Widgets/Pages/home_page1.dart';
+import 'package:materialapp/Widgets/Pages/home_page2.dart';
+import 'package:materialapp/Widgets/Pages/home_page3.dart';
+import 'package:materialapp/Widgets/base_button.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends BasePage {
+  HomePage() : super('Hello Flutter');
+
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("Hello Flutter"),
-        centerTitle: true,
-      ),
-      body: _body(context),
-    );
-  }
-
-  _body(context) {
+  body(context) {
     return Container(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           _text(),
           _pageView(),
-          _buttons(),
+          _buttons(context),
         ],
       ),
     );
@@ -39,42 +36,58 @@ class HomePage extends StatelessWidget {
     );
   }
 
-  Column _buttons() {
+  _buttons(context) {
     return Column(
       children: <Widget>[
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
-            _button('ListView'),
-            _button('Page 2'),
-            _button('Page 3'),
+            BaseButton(
+              'ListView',
+              onPressed: () => _navigate(context, HomePage1()),
+            ),
+            BaseButton(
+              'Page 2',
+              onPressed: () => _navigate(context, HomePage2()),
+            ),
+            BaseButton(
+              'Page 3',
+              onPressed: () => _navigate(context, HomePage3()),
+            ),
           ],
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
-            _button('Snack'),
-            _button('Dialog'),
-            _button('Toast'),
+            BaseButton(
+              'Snack',
+              onPressed: () => _navigate(context, HomePage1()),
+            ),
+            BaseButton(
+              'Dialog',
+              onPressed: () => _navigate(context, HomePage1()),
+            ),
+            BaseButton(
+              'Toasts',
+              onPressed: () => _navigate(context, HomePage1()),
+            ),
           ],
         ),
       ],
     );
   }
 
-  _button(String text) {
-    return RaisedButton(
-      color: Colors.blue,
-      child: Text(
-        text,
-        style: TextStyle(color: Colors.white, fontSize: 20),
+  _navigate(context, Widget page) async {
+    String txt = await Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (BuildContext context) {
+          return page;
+        },
       ),
-      onPressed: () => _onOkPressed("Parametro"),
     );
-  }
 
-  _onOkPressed(param) {
-    print(param);
+    print(txt);
   }
 
   _img(String name) {
@@ -83,7 +96,7 @@ class HomePage extends StatelessWidget {
         name,
         fit: BoxFit.cover,
       ),
-      margin: EdgeInsets.all(10),
+      margin: EdgeInsets.all(20),
     );
   }
 
