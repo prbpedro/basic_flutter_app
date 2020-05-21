@@ -14,56 +14,60 @@ class HomePage extends StatelessWidget {
 
   _body(context) {
     return Container(
-      color: Colors.red,
-
-      child: SizedBox.expand(
-        child: Column(
-
-          children: _columnRow(context),
-        ),
-      )
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          _text(),
+          _pageView(),
+          _buttons(),
+        ],
+      ),
     );
   }
 
-  _columnRow(context) {
-    return <Widget>[
-      Container(
-        color: Colors.yellow,
-        child: Row(
-          mainAxisSize: MainAxisSize.max,
-          children: <Widget>[
-            _button(),
-            _button(),
-            _button(),
-          ],
-        ),
+  Container _pageView() {
+    return Container(
+      height: 300,
+      child: PageView(
+        children: <Widget>[
+          _img('assets/images/dog1.jpg'),
+          _img('assets/images/dog2.jpg'),
+          _img('assets/images/dog3.jpg'),
+          _img('assets/images/dog4.jpg'),
+        ],
       ),
-      Container(
-        color: Colors.yellow,
-        child: Column(
-          mainAxisSize: MainAxisSize.max,
-          children: <Widget>[
-            _button(),
-            _button(),
-            _button(),
-          ],
-        ),
-      ),
-    ];
+    );
   }
 
-  _button() {
-//    return Container(
-//      color: Colors.white,
-//      child: Center(
-//        child: _button(),
-//      ),
-//    );
+  Column _buttons() {
+    return Column(
+      children: <Widget>[
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: <Widget>[
+            _button('ListView'),
+            _button('Page 2'),
+            _button('Page 3'),
+          ],
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: <Widget>[
+            _button('Snack'),
+            _button('Dialog'),
+            _button('Toast'),
+          ],
+        ),
+      ],
+    );
+  }
+
+  _button(String text) {
     return RaisedButton(
       color: Colors.blue,
       child: Text(
-        'Ok',
-        style: TextStyle(color: Colors.white, fontSize: 30),
+        text,
+        style: TextStyle(color: Colors.white, fontSize: 20),
       ),
       onPressed: () => _onOkPressed("Parametro"),
     );
@@ -73,44 +77,28 @@ class HomePage extends StatelessWidget {
     print(param);
   }
 
-  _img() {
-//    return Container(
-//      color: Colors.white,
-////      child: ListView(
-////          children: <Widget>[
-////            _text(),
-////            _img()
-////          ]
-////      ),
-////      child: SizedBox.expand(
-////          child: _img()
-////      ),
-//      child: Center(
-//          child: _img()
-//      ),
-//      //margin: EdgeInsets.only(left:10, top: 10)
-//    );
-
-    //return Image.network('https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQic4Tx27KieTfowQBGUET4h8LKvrdHfU1UZ6qY_9B3pU0_uMVG&usqp=CAU');
-    return Image.asset('assets/images/dog1.jpg', fit: BoxFit.cover);
+  _img(String name) {
+    return Container(
+      child: Image.asset(
+        name,
+        fit: BoxFit.cover,
+      ),
+      margin: EdgeInsets.all(10),
+    );
   }
 
   _text() {
-//    return Container(
-//       color: Colors.white,
-//       child: _text()
-//      ),
-//      margin: EdgeInsets.only(left:10, top: 10)
-//    );
-
-    return Text("Hello World!",
-        style: TextStyle(
-            fontSize: 30,
-            color: Colors.blue,
-            fontWeight: FontWeight.bold,
-            fontStyle: FontStyle.italic,
-            decoration: TextDecoration.underline,
-            decorationColor: Colors.red,
-            decorationStyle: TextDecorationStyle.wavy));
+    return Text(
+      "Hello World!",
+      style: TextStyle(
+        fontSize: 30,
+        color: Colors.blue,
+        fontWeight: FontWeight.bold,
+        fontStyle: FontStyle.italic,
+        decoration: TextDecoration.underline,
+        decorationColor: Colors.red,
+        decorationStyle: TextDecorationStyle.wavy,
+      ),
+    );
   }
 }
