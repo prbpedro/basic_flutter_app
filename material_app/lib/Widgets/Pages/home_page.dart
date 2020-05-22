@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:materialapp/Util/image_util.dart';
+import 'package:materialapp/Util/navigator_util.dart';
 import 'package:materialapp/Widgets/Pages/Shared/base_page.dart';
-import 'package:materialapp/Widgets/Pages/home_page1.dart';
+import 'package:materialapp/Widgets/Pages/listview_page.dart';
 import 'package:materialapp/Widgets/Pages/home_page2.dart';
 import 'package:materialapp/Widgets/Pages/home_page3.dart';
 import 'package:materialapp/Widgets/base_button.dart';
@@ -27,10 +29,10 @@ class HomePage extends BasePage {
       height: 300,
       child: PageView(
         children: <Widget>[
-          _img('assets/images/dog1.jpg'),
-          _img('assets/images/dog2.jpg'),
-          _img('assets/images/dog3.jpg'),
-          _img('assets/images/dog4.jpg'),
+          img('assets/images/dog1.jpg'),
+          img('assets/images/dog2.jpg'),
+          img('assets/images/dog3.jpg'),
+          img('assets/images/dog4.jpg'),
         ],
       ),
     );
@@ -44,15 +46,15 @@ class HomePage extends BasePage {
           children: <Widget>[
             BaseButton(
               'ListView',
-              onPressed: () => _navigate(context, HomePage1()),
+              onPressed: () => navigate(context, ListViewPage()),
             ),
             BaseButton(
               'Page 2',
-              onPressed: () => _navigate(context, HomePage2()),
+              onPressed: () => navigate(context, HomePage2()),
             ),
             BaseButton(
               'Page 3',
-              onPressed: () => _navigate(context, HomePage3()),
+              onPressed: () => navigate(context, HomePage3()),
             ),
           ],
         ),
@@ -61,42 +63,19 @@ class HomePage extends BasePage {
           children: <Widget>[
             BaseButton(
               'Snack',
-              onPressed: () => _navigate(context, HomePage1()),
+              onPressed: () => navigate(context, ListViewPage()),
             ),
             BaseButton(
               'Dialog',
-              onPressed: () => _navigate(context, HomePage1()),
+              onPressed: () => navigate(context, ListViewPage()),
             ),
             BaseButton(
               'Toasts',
-              onPressed: () => _navigate(context, HomePage1()),
+              onPressed: () => navigate(context, ListViewPage()),
             ),
           ],
         ),
       ],
-    );
-  }
-
-  _navigate(context, Widget page) async {
-    String txt = await Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (BuildContext context) {
-          return page;
-        },
-      ),
-    );
-
-    print(txt);
-  }
-
-  _img(String name) {
-    return Container(
-      child: Image.asset(
-        name,
-        fit: BoxFit.cover,
-      ),
-      margin: EdgeInsets.all(20),
     );
   }
 

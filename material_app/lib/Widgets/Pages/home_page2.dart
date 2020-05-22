@@ -23,6 +23,6 @@ class HomePage2 extends BasePage {
   }
 
   _onBackPressed(context) {
-    Navigator.pop(context, 'Page 2');
+    Navigator.pop(context);
   }
 }

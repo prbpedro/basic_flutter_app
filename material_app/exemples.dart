@@ -2,6 +2,42 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class FlutterExs {
+
+  expanded(context) {
+//    return Container(
+//        color: Colors.red,
+//
+//        child: SizedBox.expand(
+//          child: Column(
+//
+//            children: expanded(context),
+//          ),
+//        )
+//    );
+    return <Widget>[
+      Expanded(
+        child: Row(
+          mainAxisSize: MainAxisSize.max,
+          children: <Widget>[
+            button(),
+            button(),
+            button(),
+          ],
+        ),
+      ),
+      Expanded(
+        child: Column(
+          mainAxisSize: MainAxisSize.max,
+          children: <Widget>[
+            button(),
+            button(),
+            button(),
+          ],
+        ),
+      ),
+    ];
+  }
+
   columnRow(context) {
 //    return Container(
 //        color: Colors.red,
